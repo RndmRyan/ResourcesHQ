@@ -7,9 +7,9 @@ class specificCards extends Component {
         super(props);
         this.state = {
             resources: [],
-            modalresource: [],
-            comments: []
+            modalresource: null
         }
+        this.changeModal = this.changeModal.bind(this);
     }
     
     API_URL = "https://localhost:7144/";
@@ -28,7 +28,7 @@ class specificCards extends Component {
     changeModal = (res) => {
         fetch(this.API_URL + 'api/Resource/GetResourceComments?resrcID=' + res.ID).then(response => response.json())
             .then(data => {
-                this.setState({ modalresource: res, comments: data});
+                this.setState({ modalresource: res });
             })
     };
 
@@ -45,9 +45,9 @@ class specificCards extends Component {
 
     handleDelete = (id) => {
         const data = new FormData();
-        data.append("resourceID", id);
+        data.append("resID", id);
 
-        fetch('https://localhost:7144/api/Resource/ReportResource', {
+        fetch('https://localhost:7144/api/Resource/DeleteResource', {
             method: "POST",
             body: data
         }).then(response => response.json())
@@ -56,9 +56,9 @@ class specificCards extends Component {
 
     handleApprove = (id) => {
         const data = new FormData();
-        data.append("resourceID", id);
+        data.append("resID", id);
 
-        fetch('https://localhost:7144/api/Resource/ReportResource', {
+        fetch('https://localhost:7144/api/Resource/ApproveResource', {
             method: "POST",
             body: data
         }).then(response => response.json())
@@ -66,27 +66,29 @@ class specificCards extends Component {
     }
 
     render() {
-        const { resources, modalresource, comments } = this.state;
+        const { resources, modalresource } = this.state;
         return (
             <>
                 <div className="card-container">
                 {resources.map(resource =>
                     <div className="card" key={resource.ID}>
-                        <h6 className="card-title" data-bs-toggle="modal" data-bs-target="#ResourceDetails" onClick={() => this.changeModal(resource)}>
+                        <h6 className="card-title" data-bs-toggle="modal" data-bs-target={`#ResourceDetails-${resource.ID}`} onClick={() => this.changeModal(resource)}>
                             {resource.resourceTitle}
                         </h6>
                         <div className="Section">
-                            {this.props.resourceType === 'reported' ?
-                                <button className="btn btn-danger" onClick={() => this.handleDelete(resource.ID)}>Delete</button> :
-                                <button className="btn btn-success" onClick={() => this.handleApprove(resource.ID)}>Approve</button>
-                            }
+                            {this.props.resourceType === 'reported' ? (
+                                <button className="btn btn-danger" onClick={() => this.handleDelete(resource.ID)}>Delete</button>
+                            ) : this.props.resourceType === 'pending' ? (
+                                    <button className="btn btn-success" onClick={() => this.handleApprove(resource.ID)}>Approve</button>
+                            ) : (null)}
                         </div>
                     </div>
                 )}
                 </div>
 
-                <div className="modal fade" id="ResourceDetails" tabIndex="-1" aria-hidden="true">
-                    <div className="modal-dialog modal-lg modal-dialog-centered">
+                <div className="modal fade" id={`ResourceDetails-${modalresource ? modalresource.ID : ''}`} tabIndex="-1" aria-hidden="true">
+                    {modalresource && (
+                        <div className="modal-dialog modal-lg modal-dialog-centered">
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title">{modalresource.ID} {modalresource.resourceTitle}</h5>
@@ -102,26 +104,13 @@ class specificCards extends Component {
                                     <h6>Uploaded by: {modalresource.name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; On: {new Date(modalresource.UploadDate).toLocaleDateString()}</h6>
                                 </div>
                                 <div className="mt-4"><p className="lead">{modalresource.descp}</p></div>
-                                <br/>
-                                <h6>Comments:</h6>
-
-                                <div className="comment-container">
-                                    {comments.map(comment =>
-                                        <div className="" key={ comment.ID } >
-                                            <hr></hr>
-                                            <p className="">{comment.comment}</p>
-                                                <small className="blockquote-footer">{comment.name}</small> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <small>{new Date(comment.commentdate).toLocaleDateString()}</small>
-                                        </div>
-                                    )}
-                                </div>
-                                <br/>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-primary" onClick={() => this.downloadFile(modalresource.link)}>Download</button>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    )}
                 </div>
             </>
         );

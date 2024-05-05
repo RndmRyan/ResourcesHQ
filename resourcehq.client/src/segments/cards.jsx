@@ -29,7 +29,7 @@ class cards extends Component {
                     this.setState({ resources: data });
                 })
         else 
-            fetch(this.API_URL + 'api/Resource/GetSpecificResources?field=' + selectedRadio + '&condition=' + searchValue).then(response => response.json())
+            fetch(this.API_URL + 'api/Resource/SearchSpecificResources?field=' + selectedRadio + '&condition=' + searchValue).then(response => response.json())
                 .then(data => {
                     this.setState({ resources: data });
                 })

@@ -41,3 +41,4 @@ D:\ResourceHQ\ResourceHQ.Server\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.
 D:\ResourceHQ\ResourceHQ.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\ResourceHQ\ResourceHQ.Server\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\ResourceHQ\ResourceHQ.Server\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\ResourceHQ\ResourceHQ.Server\obj\Debug\net8.0\ResourceHQ.Server.sourcelink.json

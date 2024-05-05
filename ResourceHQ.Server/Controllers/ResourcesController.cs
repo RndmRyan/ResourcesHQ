@@ -342,6 +342,30 @@ namespace ResourceHQ.Server.Controllers
 
 		//--------------- Bookmarks
 		[HttpGet]
+		[Route("GetRecommendedResources")]
+		public JsonResult GetRecommendedResources(int userID)
+		{
+			string query = "SELECT ID, resourceTitle, link, course, filetype" +
+				" FROM resources WHERE course IN (SELECT course FROM registeredcourses WHERE studentID = " +@userID+ ");";
+
+			DataTable table = new DataTable();
+			string sqlDataRoute = _configuration.GetConnectionString("ResourceHQCon");
+			SqlDataReader myreader;
+			using (SqlConnection myconn = new SqlConnection(sqlDataRoute))
+			{
+				myconn.Open();
+				using (SqlCommand mycmd = new SqlCommand(query, myconn))
+				{
+					myreader = mycmd.ExecuteReader();
+					table.Load(myreader);
+					myreader.Close();
+					myconn.Close();
+				}
+			}
+			return new JsonResult(table);
+		}
+
+		[HttpGet]
 		[Route("GetBookMarkedResources")]
 		public JsonResult GetBookMarkedResources(int userID)
 		{
@@ -418,6 +442,127 @@ namespace ResourceHQ.Server.Controllers
 				}
 			}
 			return new JsonResult("Bookmark Added");
+		}
+
+		//------------------ Admin Resource Page
+		[HttpPost]
+		[Route("DeleteResource")]
+		public JsonResult DeleteResource([FromForm] int resID)
+		{
+			string query = "UPDATE resources SET status = 'deleted' WHERE ID = @resID;";
+			DataTable table = new DataTable();
+			string sqlDataRoute = _configuration.GetConnectionString("ResourceHQCon");
+			SqlDataReader myreader;
+			using (SqlConnection myconn = new SqlConnection(sqlDataRoute))
+			{
+				myconn.Open();
+				using (SqlCommand mycmd = new SqlCommand(query, myconn))
+				{
+					mycmd.Parameters.AddWithValue("@resID", resID);
+
+					myreader = mycmd.ExecuteReader();
+					table.Load(myreader);
+					myreader.Close();
+					myconn.Close();
+				}
+			}
+			return new JsonResult("Resource Deleted Successfully");
+		}
+		[HttpPost]
+		[Route("ApproveResource")]
+		public JsonResult ApproveResource([FromForm] int resID)
+		{
+			string query = "UPDATE resources SET status = 'approved' WHERE ID = @resID;";
+			DataTable table = new DataTable();
+			string sqlDataRoute = _configuration.GetConnectionString("ResourceHQCon");
+			SqlDataReader myreader;
+			using (SqlConnection myconn = new SqlConnection(sqlDataRoute))
+			{
+				myconn.Open();
+				using (SqlCommand mycmd = new SqlCommand(query, myconn))
+				{
+					mycmd.Parameters.AddWithValue("@resID", resID);
+
+					myreader = mycmd.ExecuteReader();
+					table.Load(myreader);
+					myreader.Close();
+					myconn.Close();
+				}
+			}
+			return new JsonResult("Resource Approved");
+		}
+
+		//------------------ Admin User Page
+
+		[HttpGet]
+		[Route("getUsers")]
+		public JsonResult getUsers(string role, string userstatus)
+		{
+			string query = "SELECT * FROM users" +
+				" WHERE userrole = '" + role+ "' AND registerstatus = '" + userstatus + "';";
+
+			DataTable table = new DataTable();
+			string sqlDataRoute = _configuration.GetConnectionString("ResourceHQCon");
+			SqlDataReader myreader;
+			using (SqlConnection myconn = new SqlConnection(sqlDataRoute))
+			{
+				myconn.Open();
+				using (SqlCommand mycmd = new SqlCommand(query, myconn))
+				{
+					myreader = mycmd.ExecuteReader();
+					table.Load(myreader);
+					myreader.Close();
+					myconn.Close();
+				}
+			}
+			return new JsonResult(table);
+		}
+
+		[HttpPost]
+		[Route("DeleteUser")]
+		public JsonResult DeleteUser([FromForm] int uID)
+		{
+			string query = "UPDATE users SET registerstatus = 'deleted' WHERE ID = @uID;";
+			DataTable table = new DataTable();
+			string sqlDataRoute = _configuration.GetConnectionString("ResourceHQCon");
+			SqlDataReader myreader;
+			using (SqlConnection myconn = new SqlConnection(sqlDataRoute))
+			{
+				myconn.Open();
+				using (SqlCommand mycmd = new SqlCommand(query, myconn))
+				{
+					mycmd.Parameters.AddWithValue("@uID", uID);
+
+					myreader = mycmd.ExecuteReader();
+					table.Load(myreader);
+					myreader.Close();
+					myconn.Close();
+				}
+			}
+			return new JsonResult("User Deleted Successfully");
+		}
+		[HttpPost]
+		[Route("ApproveUser")]
+		public JsonResult ApproveUser([FromForm] int uID)
+		{
+			string query = "UPDATE users SET registerstatus = 'registered' WHERE ID = @uID;";
+			DataTable table = new DataTable();
+			string sqlDataRoute = _configuration.GetConnectionString("ResourceHQCon");
+			SqlDataReader myreader;
+			using (SqlConnection myconn = new SqlConnection(sqlDataRoute))
+			{
+				myconn.Open();
+				using (SqlCommand mycmd = new SqlCommand(query, myconn))
+				{
+					mycmd.Parameters.AddWithValue("@uID", uID);
+
+					myreader = mycmd.ExecuteReader();
+					table.Load(myreader);
+					myreader.Close();
+					myconn.Close();
+				}
+			}
+			return new JsonResult("User Registered");
 		}
 	}
 }

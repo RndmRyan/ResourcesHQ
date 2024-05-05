@@ -43,6 +43,7 @@ function RegistrationPage()
 
   return (
       <>
+          <div className="bgsection">
     <div className="wrapper">
     <form onSubmit={handleRegister}>
         <h1>Register</h1>
@@ -73,7 +74,8 @@ function RegistrationPage()
         <div className="opposite-link">
             <p className="m-3"> Already have an account? &nbsp; <button onClick={setpathLogin}> Login </button> </p>
         </div>
-    </form>
+                  </form>
+              </div>
           </div>
     </>
   )

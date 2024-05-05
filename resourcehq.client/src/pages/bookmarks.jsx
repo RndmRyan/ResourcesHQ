@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Categories() {
     const navigate = useNavigate();
     const [resources, setResources] = useState([]);
+    const [recommendedresources, setrecommendedresources] = useState([]);
 
     useEffect(() => {
         refreshResource();
@@ -18,6 +19,13 @@ function Categories() {
             .then(response => response.json())
             .then(data => {
                 setResources(data);
+            })
+            .catch(error => console.error('Error fetching resources:', error));
+
+        fetch(API_URL + `api/Resource/GetRecommendedResources?userID=${sessionStorage.getItem('userId')}`)
+            .then(response => response.json())
+            .then(data => {
+                setrecommendedresources(data);
             })
             .catch(error => console.error('Error fetching resources:', error));
     }
@@ -53,17 +61,26 @@ function Categories() {
 
     return (
         <>
-            <header>
-                <nav className="navbar">
-                    <h3>ResourcesHQ</h3>
-                    <div className="nav nav-pills">
-                        <p className="nav-link" onClick={() => setNavPath("/Student-Dashboard")}>Home</p>
-                        <p className="nav-link" onClick={() => setNavPath("/Bookmarks")}>Bookmarks</p>
-                        <p className="nav-link" onClick={() => setNavPath("/Chatrooms")}>Chat Rooms</p>
-                        <p className="nav-link" onClick={() => setNavPath("/")}>LogOut&nbsp;&nbsp;&nbsp;</p>
+            <br/><br/><br/>
+            <h3 className="m-5 ">Automated Recommendations:</h3>
+            <div className="card-container">
+                {recommendedresources.map(resource =>
+                    <div className="card" key={resource.ID}>
+                        <h6 className="mt-3">
+                            {resource.resourceTitle}
+                        </h6>
+                        <div className="Section">
+                            <span className="badge bg-primary-subtle text-primary-emphasis rounded-pill">{resource.course}</span>
+                            <span className="badge bg-primary-subtle text-primary-emphasis rounded-pill">{resource.filetype}</span>
+                        </div>
+                        <div className="Section">
+                            <button className="btn" onClick={() => downloadFile(resource.link)}>
+                                <i className="bi bi-cloud-download-fill"></i>
+                            </button>
+                        </div>
                     </div>
-                </nav>
-            </header>
+                )}
+            </div>
 
             <h3 className="m-5 ">My BookMarks</h3>
             <div className="card-container">
@@ -87,6 +104,17 @@ function Categories() {
                     </div>
                 )}
             </div>
+            <header>
+                <nav className="navbar">
+                    <h3>ResourcesHQ</h3>
+                    <div className="nav nav-pills">
+                        <p className="nav-link" onClick={() => setNavPath("/Student-Dashboard")}>Home</p>
+                        <p className="nav-link" onClick={() => setNavPath("/Bookmarks")}>Bookmarks</p>
+                        <p className="nav-link" onClick={() => setNavPath("/Chatrooms")}>Chat Rooms</p>
+                        <p className="nav-link" onClick={() => setNavPath("/")}>LogOut&nbsp;&nbsp;&nbsp;</p>
+                    </div>
+                </nav>
+            </header>
         </>
     );
 }

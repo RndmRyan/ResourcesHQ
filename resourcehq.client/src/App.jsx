@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import StudentHomepg from './pages/studentHomepg';
 import AdminHomepg from './pages/adminHome';
+import Userpg from './pages/users';
 import Categories from './pages/bookmarks';
 import Chatroom from './pages/chatrooms';
 import Register from './pages/RegistrationPage';
@@ -22,6 +23,7 @@ function App()
                 <Route path="/Chatrooms" element={<Chatroom />} />
 
                 <Route path="/Admin-Dashboard" element={<AdminHomepg />} />
+                <Route path="/Users" element={<Userpg />} />
             </Routes>
         </>
 
