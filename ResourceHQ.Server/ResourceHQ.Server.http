@@ -1,0 +1,6 @@
+@ResourceHQ.Server_HostAddress = http://localhost:5219
+
+GET {{ResourceHQ.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

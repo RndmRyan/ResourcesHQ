@@ -1,0 +1,62 @@
+﻿.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4rem;
+    margin-left: 4rem;
+    width: 90vw;
+}
+
+.card {
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    margin-top: 20px;
+    align-self: center;
+    justify-content: center;
+    cursor: pointer;
+}
+    .card-title:hover {
+        color: rgba(106,16,140,255);
+    }
+
+.Section {
+    align-self: center;
+    margin-top: 10px;
+}
+
+.Section span {
+    margin-right: 10px;
+}
+
+.Section i {
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+
+i:hover {
+    color: rgba(106,16,140,255);
+}
+
+.input-group {
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    margin: 20px;
+}
+.inputgrp {
+    margin-top: 10vh
+}
+
+.form-outline {
+    width: 50vw
+}

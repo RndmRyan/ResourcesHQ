@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+}
+
+.nav-link {
+    color:white
+}
+
+.nav-link:hover {
+    cursor: pointer
+}
+
+.chatroomsetion {
+    text-align:center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    width: 93vw;
+}
+
+.headers {
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.modalMsgBox {
+    display: flex;
+    align-items: center;
+}
+    .modalMsgBox input {
+        flex: 1;
+        border: 2px solid rgba(0,0,0,.2);
+    }
+
+.modal-footer form {
+    display: flex;
+    align-items: center;
+}
+
+    .modal-footer form input {
+        flex: 1;
+        border: 2px solid rgba(0,0,0,.2);
+    }
+
+.bi-bookmark-x-fill:hover{
+    color: red
+}

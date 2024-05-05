@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceHQ.Server", "ResourceHQ.Server\ResourceHQ.Server.csproj", "{5A076BC2-1FCA-48C9-A96C-217AD4AE69CE}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "resourcehq.client", "resourcehq.client\resourcehq.client.esproj", "{5B43B7D3-ED07-419A-9552-0F7530FB2C7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A076BC2-1FCA-48C9-A96C-217AD4AE69CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A076BC2-1FCA-48C9-A96C-217AD4AE69CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A076BC2-1FCA-48C9-A96C-217AD4AE69CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A076BC2-1FCA-48C9-A96C-217AD4AE69CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B43B7D3-ED07-419A-9552-0F7530FB2C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B43B7D3-ED07-419A-9552-0F7530FB2C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B43B7D3-ED07-419A-9552-0F7530FB2C7B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5B43B7D3-ED07-419A-9552-0F7530FB2C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B43B7D3-ED07-419A-9552-0F7530FB2C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B43B7D3-ED07-419A-9552-0F7530FB2C7B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7586FC4-354A-4481-93B1-66F21DBA1342}
+	EndGlobalSection
+EndGlobal

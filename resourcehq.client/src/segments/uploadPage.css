@@ -1,0 +1,28 @@
+
+.upload-form form {
+    display: grid;
+    grid-gap: 20px;
+    text-align: left;
+}
+
+.upload-form select,
+.upload-form input[type="text"],
+.upload-form textarea {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.upload-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(106,16,140,255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .upload-form button[type="submit"]:hover {
+        background-color: rgba(66,0,100,255);
+    }

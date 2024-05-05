@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "kC2DBwRYhUI2V/QA6l3TVd4gBxVBlDw9UNCw/S/+uOQ=",
+  "Source": "ResourceHQ.Server",
+  "BasePath": "_content/ResourceHQ.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\ResourceHQ\\resourcehq.client\\resourcehq.client.esproj",
+      "Version": 2,
+      "Source": "resourcehq.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
